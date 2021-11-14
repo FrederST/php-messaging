@@ -64,15 +64,15 @@ class MessageBroker
         return new $class($newConfig);
     }
 
-    public function getConfig()
+    public function getConfig(): array
     {
         return $this->config;
     }
 
-    public function publish(string $routingKey, string $event, array $body, string $id = '', array $properties = []): void
+    public function publish(string $routingKey, array $body, string $id = '', array $properties = []): void
     {
-        $message = $this->messageSecurity->prepareMsgToPublish(new MessageStructure($event, $body, $id));
-        $this->publisher->publish($routingKey, $message, $properties);
+        $message = $this->messageSecurity->prepareMsgToPublish(new MessageStructure($body, $id));
+        $this->publisher->publish($message, $properties);
     }
 
     public function consume(Closure $closure): void
