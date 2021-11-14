@@ -38,8 +38,7 @@ jobs:
       # - name: Check code style
       #   run: composer run-script php-cs-fixer-check
       - name: getRabbitPort
-        run: |
-          ls ${{ job.services.rabbitmq.ports[5672] }}
+        run: echo "The rabbit port is ${{ job.services.rabbitmq.ports[5672] }}"
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
           MSAPP_RABBITMQ_PORT: ${{ job.services.rabbitmq.ports[5672] }}
