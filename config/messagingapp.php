@@ -42,8 +42,8 @@ return [
     ],
     'signature' => [
         'algorithm' => env('MSAPP_SIGNATURE_ALGORITHM', OPENSSL_ALGO_SHA256),
-        'publicKey' => env('MSAPP_SIGNATURE_PUBLICKEY_PATH', null),
-        'privateKey' => env('MSAPP_SIGNATURE_PRIVATEKEY_PATH', null),
+        'publicKey' => env('MSAPP_SIGNATURE_PUBLICKEY_PATH', file_get_contents(__DIR__ . '/../tests/certs/signaturePublicKey.pem')),
+        'privateKey' => env('MSAPP_SIGNATURE_PRIVATEKEY_PATH', file_get_contents(__DIR__ . '/../tests/certs/signaturePrivateKey.pem')),
     ],
     'encryption' => [
         'secretKey' => env('MSAPP_ENCRYPT_SECRETKEY', 'CLASS-MESSAGE-KEY'),
